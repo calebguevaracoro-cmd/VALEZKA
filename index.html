@@ -1,0 +1,458 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#160d25">
+<title>Para Valezka 💜</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+ background:radial-gradient(ellipse at top,#382044,#170e25 55%,#0e0918);
+ color:#f8efff;font-family:Georgia,serif;line-height:1.8;
+ overflow-x:hidden
+}
+#stars{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.star{position:absolute;background:white;width:2px;height:2px;border-radius:50%;animation:twinkle 3s infinite alternate}
+@keyframes twinkle{to{opacity:.15;transform:scale(1.8)}}
+.cover{
+ min-height:100vh;display:flex;align-items:center;justify-content:center;
+ text-align:center;padding:30px 20px
+}
+.cover-content{max-width:650px;animation:appear 1.2s ease}
+.cover img{
+ width:155px;height:155px;object-fit:contain;
+ filter:drop-shadow(0 0 20px #d99bea88);
+ animation:float 4s ease-in-out infinite
+}
+@keyframes float{50%{transform:translateY(-12px)}}
+h1{font-size:clamp(3rem,11vw,5.5rem);color:#edc9ff;line-height:1.1;margin:15px 0}
+.cover p{color:#d8c6e5;font-size:1.12rem;margin:15px auto 25px}
+.eyebrow{font: .72rem Arial,sans-serif;letter-spacing:4px;text-transform:uppercase;color:#dba7e5}
+button{
+ border:1px solid #ffffff45;border-radius:30px;padding:13px 25px;
+ background:linear-gradient(120deg,#8952a9,#bc70a8);
+ color:white;font-size:1rem;cursor:pointer;transition:.3s
+}
+button:hover{transform:translateY(-3px);box-shadow:0 8px 25px #c37bc555}
+.login{
+ display:none;margin:25px auto 0;max-width:350px;padding:22px;
+ background:#281936;border:1px solid #ffffff25;border-radius:18px;text-align:left
+}
+.login.show{display:block;animation:appear .4s}
+.login label{display:block;margin-bottom:10px}
+.login input{
+ width:100%;padding:12px;background:#150d20;border:1px solid #ffffff35;
+ border-radius:10px;color:white;margin-bottom:12px
+}
+#error{color:#ffb8d5;font-size:.85rem;min-height:20px}
+@keyframes appear{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+#website{display:none}
+#website.show{display:block;animation:appear .8s}
+header.nav{
+ position:sticky;top:0;z-index:20;padding:12px;
+ background:#160d25ed;backdrop-filter:blur(15px);
+ border-bottom:1px solid #ffffff20
+}
+.brand{text-align:center;color:#edc5ff;font-size:.9rem;margin-bottom:8px}
+nav{
+ display:flex;gap:9px;overflow-x:auto;justify-content:flex-start;
+ max-width:950px;margin:auto;padding-bottom:4px
+}
+nav a{
+ white-space:nowrap;text-decoration:none;color:#f1e4f8;
+ font: .8rem Arial,sans-serif;border:1px solid #ffffff25;
+ border-radius:30px;padding:8px 13px;transition:.3s
+}
+nav a:hover{background:#a36ab555}
+main{width:min(880px,calc(100% - 28px));margin:auto;padding:20px 0 35px}
+.section{
+ padding:clamp(24px,5vw,40px);margin:20px 0;
+ border:1px solid #ffffff20;border-radius:24px;
+ background:linear-gradient(145deg,#2a1b3bea,#1d122bea);
+ box-shadow:0 15px 40px #0004;
+ opacity:0;transform:translateY(25px);
+ transition:opacity .8s,transform .8s
+}
+.section.visible{opacity:1;transform:translateY(0)}
+.section h2{
+ font-size:clamp(2rem,7vw,2.8rem);font-weight:normal;
+ color:#edcaff;line-height:1.2;margin:8px 0 22px
+}
+.section p{margin-bottom:17px;color:#eee2f5;font-size:1.04rem}
+.section p:last-child{margin-bottom:0}
+.divider{width:65px;height:2px;background:linear-gradient(90deg,#d88bda,transparent);margin:20px 0}
+.highlight{
+ padding:20px;border-radius:15px;
+ background:#ffffff09;border-left:2px solid #d99be4;
+ margin:22px 0;color:#f0d9f5;font-style:italic
+}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:20px}
+.photo{overflow:hidden;border-radius:17px;border:1px solid #ffffff25;background:#ffffff08}
+.photo img{display:block;width:100%;height:260px;object-fit:cover;transition:.5s}
+.photo:hover img{transform:scale(1.05)}
+.photo figcaption{text-align:center;padding:10px;font-size:.9rem;color:#e6d1ef}
+.musicbox{
+ margin-top:20px;padding:20px;border-radius:18px;
+ background:#130d20;border:1px solid #ffffff25
+}
+.track{display:flex;align-items:center;gap:15px;margin-bottom:15px}
+.disc{
+ width:58px;height:58px;flex-shrink:0;border-radius:50%;
+ background:radial-gradient(circle,#f6eaff 0 8%,#9d6eaf 10% 25%,#251530 27% 60%,#b184c2 62%);
+ animation:spin 7s linear infinite;animation-play-state:paused
+}
+.disc.playing{animation-play-state:running}
+@keyframes spin{to{transform:rotate(360deg)}}
+.track h3{font-size:1.15rem;color:#efd2ff;font-weight:normal}
+.track small{color:#c9b6d5;font: .8rem Arial}
+audio{width:100%;margin:10px 0}
+#status{font: .8rem Arial;color:#d7b6e6;min-height:22px}
+.subtitle{
+ min-height:115px;display:flex;align-items:center;justify-content:center;
+ text-align:center;padding:20px;border-radius:15px;
+ background:linear-gradient(120deg,#a15eae35,#d77bbd20);
+ border:1px solid #e8a7d933;font-size:1.1rem;color:#fff0fc
+}
+.subtitle small{display:block;font: .7rem Arial;letter-spacing:2px;color:#d7b7e5;margin-bottom:7px}
+.center{text-align:center}
+.signature{font-style:italic;color:#e9b6ed!important;margin-top:25px}
+footer{text-align:center;color:#bda9ca;padding:20px;font-size:.85rem}
+.heart{
+ position:fixed;bottom:-35px;z-index:99;pointer-events:none;
+ animation:heartUp 3.5s linear forwards
+}
+@keyframes heartUp{to{transform:translateY(-110vh) rotate(35deg);opacity:0}}
+@media(max-width:550px){
+ .gallery{grid-template-columns:1fr 1fr;gap:9px}
+ .photo img{height:190px}
+ .section{padding:24px 19px;margin:15px 0}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+
+<body>
+<div id="stars"></div>
+
+<!-- PORTADA -->
+<section class="cover" id="cover">
+ <div class="cover-content">
+  <p class="eyebrow">Una página hecha especialmente para ti</p>
+  <img src="fotos/kuromi.jpg" alt="Kuromi">
+  <h1>Para ti,<br>Valezka</h1>
+  <p>Porque hay personas que llegan a tu vida y terminan convirtiéndose en alguien muy especial.</p>
+  <button id="open">Abrir mi regalo</button>
+
+  <form class="login" id="login">
+   <label for="password">¿Qué es lo que más me gusta de ti?</label>
+   <input id="password" type="text" placeholder="Escribe tu respuesta" required>
+   <button type="submit" style="width:100%">Entrar</button>
+   <p id="error"></p>
+  </form>
+ </div>
+</section>
+
+<div id="website">
+
+<header class="nav">
+ <p class="brand">VALEZKA · Un lugar para nosotros</p>
+ <nav>
+  <a href="#carta">Carta</a>
+  <a href="#recuerdos">Recuerdos</a>
+  <a href="#sentimientos">Lo que siento</a>
+  <a href="#fotos">Fotografías</a>
+  <a href="#cancion">Nuestra canción</a>
+  <a href="#final">Para ti</a>
+ </nav>
+</header>
+
+<main>
+
+<!-- CARTA -->
+<section class="section" id="carta">
+ <p class="eyebrow">01 · Algo que quiero decirte</p>
+ <h2>Una carta para ti</h2>
+ <div class="divider"></div>
+
+ <p>Valezka, no sé exactamente cómo empezar esta carta, porque cuando se trata de ti tengo muchas cosas en la cabeza y, al mismo tiempo, a veces no encuentro las palabras necesarias para expresarlas.</p>
+
+ <p>Quería hacerte algo diferente, algo que no fuera simplemente un mensaje que lees y después queda perdido entre tantas conversaciones. Quería preparar un espacio donde pudiera dejar algunas cosas que pienso, recuerdos que guardo y sentimientos que quizás no siempre sé demostrarte.</p>
+
+ <p>Desde que llegaste a mi vida han pasado muchas cosas que, aunque algunas parezcan simples, para mí tienen un significado especial. Me gusta recordar cómo empezamos, nuestras salidas, las conversaciones, las bromas y hasta esas situaciones inesperadas que terminan convirtiéndose en anécdotas.</p>
+
+ <p>No voy a decirte que soy perfecto, porque sé que tengo mis defectos. A veces puedo ser complicado, pensar demasiado, quedarme callado o no saber cómo explicar lo que me pasa. Pero estoy intentando aprender a comunicarme mejor y a demostrar lo que siento de una manera más clara.</p>
+
+ <p>Quiero que sepas que no veo lo nuestro como algo que simplemente está pasando por pasar. Me importa conocerte, entenderte, compartir contigo y seguir descubriendo cómo somos cuando estamos juntos.</p>
+
+ <p>Me gustaría que podamos tener muchísimas experiencias más, conocer lugares, tomarnos fotografías, reírnos por tonterías y crear recuerdos que dentro de algunos años podamos recordar con una sonrisa.</p>
+
+ <p>No quiero prometerte una historia perfecta. Prefiero demostrarte con el tiempo que mis intenciones son sinceras y que quiero cuidar lo que estamos construyendo.</p>
+
+ <div class="highlight">Si pudiera resumir todo esto en una sola idea, sería que me alegra haberte conocido y que quiero seguir eligiendo compartir momentos contigo.</div>
+
+ <p class="signature">Con mucho cariño, para ti. 💜</p>
+</section>
+
+<!-- RECUERDOS: TODOS JUNTOS -->
+<section class="section" id="recuerdos">
+ <p class="eyebrow">02 · Cosas que guardo en mi memoria</p>
+ <h2>Nuestros recuerdos</h2>
+ <div class="divider"></div>
+
+ <p>Hay momentos que quizá para ti no sean tan importantes o que ni siquiera recuerdes de la misma manera que yo, pero que se quedaron guardados en mi cabeza. No son grandes acontecimientos, son esas pequeñas cosas que hacen que nuestra historia sea nuestra.</p>
+
+ <p>Me acuerdo de cuando te pregunté si querías ser mi enamorada en el cine. De los nervios que tenía y de lo especial que fue ese momento para mí. También recuerdo cuando te cargué sobre mis hombros y empezaste a gritar. No sé por qué, pero cada vez que me acuerdo de eso me da risa.</p>
+
+ <p>Me acuerdo de tus expresiones, de las caras que haces y de esas ocurrencias tuyas que aparecen de la nada. Son detalles que me gustan porque hacen que cualquier momento contigo tenga algo distinto. A veces haces cosas tan inesperadas que no sé si reírme, sorprenderme o simplemente quedarme mirándote.</p>
+
+ <p>Y cómo olvidarme de cuando compartiste tu Quaker con ese pan que ya habías mordido. Puede parecer una tontería, pero justamente esas cosas tan particulares son las que terminan quedándose en mi memoria.</p>
+
+ <p>También recuerdo nuestra primera salida, que terminó siendo en un velorio. Definitivamente no fue el plan que alguien imaginaría para una primera salida, pero así empezó otra parte de nuestra historia. Supongo que no siempre necesitamos que las cosas salgan como las planeamos para que terminen siendo memorables.</p>
+
+ <p>Me acuerdo de la primera vez que te vi. Me costaba mirarte directamente a los ojos y estaba bastante nervioso. Lo curioso es que, incluso después de todo este tiempo, todavía hay ocasiones en las que consigues ponerme nervioso.</p>
+
+ <p>También me gusta recordar cuando compartimos tiempo con tu familia. Para mí es importante conocer a las personas que forman parte de tu vida y entender un poco más de dónde vienes, qué cosas valoras y quiénes son importantes para ti.</p>
+
+ <p>Podría seguir mencionando un montón de momentos, pero creo que lo bonito es que todavía nos quedan muchos por vivir. No quiero que esta sección sea solamente una lista de cosas que ya pasaron; quiero que algún día podamos volver aquí y recordar también todo lo que todavía nos falta experimentar.</p>
+
+ <div class="highlight">Quizá algunos recuerdos sean pequeños para el resto del mundo, pero eso no significa que sean pequeños para mí.</div>
+</section>
+
+<!-- SENTIMIENTOS -->
+<section class="section" id="sentimientos">
+ <p class="eyebrow">03 · Lo que veo en ti</p>
+ <h2>Lo que me gusta de ti</h2>
+ <div class="divider"></div>
+
+ <p>Hay muchas cosas que me gustan de ti y no todas tienen que ver con tu apariencia. Claro que me pareces bonita, pero sería quedarme demasiado corto si solamente hablara de eso.</p>
+
+ <p>Me gusta tu forma de expresarte, tus gestos, tus ocurrencias y la manera en que puedes cambiar el ambiente de un momento con alguna de tus bromas. Me gusta cuando eres espontánea y cuando haces esas expresiones que probablemente ni siquiera notas que haces.</p>
+
+ <p>Me gusta escucharte hablar, incluso cuando me cuentas cosas que parecen no tener mucha importancia. Me interesa saber cómo estuvo tu día, qué te preocupa, qué te emociona y qué cosas pasan por tu cabeza.</p>
+
+ <p>También me gusta tu forma de ser con las personas que quieres. Me gusta conocer a tu familia y entender lo importante que es para ti. Son cosas que me permiten conocerte más allá de los momentos que compartimos solamente nosotros dos.</p>
+
+ <p>Quiero que conmigo puedas sentirte tranquila, que puedas hablar de lo que te pasa y que no tengas que fingir estar bien cuando no lo estás. No siempre voy a tener la respuesta correcta, pero sí quiero aprender a escucharte y entenderte.</p>
+
+ <p>Me gusta que seas tú. Con tus días buenos, tus días complicados, tus bromas, tus enojos, tus ocurrencias y todas esas cosas que forman parte de tu personalidad.</p>
+
+ <p>Y si hay algo que quiero que tengas presente es que no tienes que convertirte en alguien diferente para que yo quiera estar contigo. Me interesa conocerte tal como eres y que podamos crecer juntos sin dejar de ser nosotros mismos.</p>
+</section>
+
+<!-- FOTOGRAFÍAS -->
+<section class="section" id="fotos">
+ <p class="eyebrow">04 · Momentos capturados</p>
+ <h2>Nuestras fotografías</h2>
+ <div class="divider"></div>
+ <p>Algunos momentos que quiero conservar. Ojalá esta galería se vaya llenando de muchas más fotografías y experiencias juntos.</p>
+
+ <div class="gallery">
+  <figure class="photo">
+   <img src="fotos/foto1.jpg" alt="Nuestra fotografía 1" loading="lazy">
+   <figcaption>Un recuerdo contigo</figcaption>
+  </figure>
+  <figure class="photo">
+   <img src="fotos/foto2.jpg" alt="Nuestra fotografía 2" loading="lazy">
+   <figcaption>Un momento especial</figcaption>
+  </figure>
+  <figure class="photo">
+   <img src="fotos/foto3.jpg" alt="Nuestra fotografía 3" loading="lazy">
+   <figcaption>De esos días que recuerdo</figcaption>
+  </figure>
+ </div>
+</section>
+
+<!-- CANCIÓN -->
+<section class="section" id="cancion">
+ <p class="eyebrow">05 · Una canción para ti</p>
+ <h2>CANCION QUE ME HACE RECORDARTE</h2>
+ <div class="divider"></div>
+
+ <p>Hay canciones que, por alguna razón, terminan haciéndonos pensar en una persona. Quise poner esta aquí porque quería que también formara parte de este detalle que preparé para ti.</p>
+
+ <div class="musicbox">
+  <div class="track">
+   <div class="disc" id="disc"></div>
+   <div>
+    <h3>Eres</h3>
+    <small>Una canción para ti</small>
+   </div>
+  </div>
+
+  <audio id="audio" controls preload="metadata">
+   <source src="musica/cancion.mp3" type="audio/mpeg">
+   Tu navegador no puede reproducir el audio.
+  </audio>
+
+  <p id="status">Pulsa reproducir para escuchar la canción.</p>
+
+  <div class="subtitle">
+   <div>
+    <small>UN MENSAJE PARA TI</small>
+    <span id="caption">Quiero que sepas que valoro mucho lo que compartimos.</span>
+   </div>
+  </div>
+  <p style="font-size:.78rem;color:#bca9ca;margin-top:12px">Me encantaria poder subir mas canciones pero no puedo p UnU</p>
+ </div>
+</section>
+
+<!-- FINAL -->
+<section class="section" id="final">
+ <p class="eyebrow">06 · Antes de que te vayas</p>
+ <h2>Hay algo más que quiero decirte</h2>
+ <div class="divider"></div>
+
+ <p>Tengo un montón de cartas que todavía no te entrego. Siempre que iba a verte pensaba en dártelas y luego irme, porque la verdad siempre me ha dado vergüenza.</p>
+
+ <p>A veces pienso que son una tontería, quizá porque siempre lo he visto así, pero para mí tienen mucho significado. Quisiera entregártelas la próxima vez que vaya.</p>
+
+ <p>Sé que hay personas que piensan que solo estoy contigo para un rato y así. Hasta tu mamá puede que piense eso un poquito.</p>
+
+ <p>No tengo una manera exacta de demostrarlo con palabras, pero te puedo asegurar que lo que siento es sincero. Nunca tendría la intención de hacerte daño. No soy esa clase de persona y jamás quisiera convertirme en alguien que te haga sufrir.</p>
+
+ <p>Ojalá podamos seguir juntos y que pueda demostrártelo día con día. No quiero que todo se quede en palabras bonitas escritas en una página. Quiero que también puedas verlo en mi manera de tratarte, en el tiempo que te dedico y en las decisiones que tomo.</p>
+
+ <p>Quiero que tengamos la confianza de contarnos las cosas, de hablar cuando algo nos incomode y de no dejar que los malos entendidos se hagan más grandes por no saber comunicarnos. Sé que todavía tenemos mucho por aprender el uno del otro, y me gustaría que podamos hacerlo juntos.</p>
+
+ <p>Perdón si estuve un poco raro. A veces me pierdo en mis pensamientos y no sé cómo expresar lo que me pasa. No siempre encuentro las palabras en el momento adecuado, pero eso no significa que no me importes.</p>
+
+ <p>Me gustaría seguir compartiendo contigo los días normales, los días especiales, las salidas improvisadas, las conversaciones largas y hasta esos momentos en los que no hacemos absolutamente nada.</p>
+
+ <p>Gracias por formar parte de mi vida y por todos esos momentos que, aunque parezcan sencillos, significan bastante para mí.</p>
+
+ <p>Pero no dudes que en ningún momento he dejado de quererte.</p>
+
+ <p class="signature">Con todo mi cariño, para ti, Valezka. 💜</p>
+
+ <div class="center" style="margin-top:28px">
+  <button id="hearts">Una última sorpresa 💗</button>
+ </div>
+</section>
+
+</main>
+<foote>   Perdon por no haberlo hecho mejor jaja 💜 </foote>
+</div>
+
+<script>
+// ESTRELLAS
+const stars=document.getElementById('stars');
+for(let i=0;i<100;i++){
+ const s=document.createElement('span');
+ s.className='star';
+ s.style.left=Math.random()*100+'%';
+ s.style.top=Math.random()*100+'%';
+ s.style.animationDelay=Math.random()*4+'s';
+ stars.appendChild(s);
+}
+
+// ACCESO
+const login=document.getElementById('login');
+document.getElementById('open').onclick=()=>{
+ login.classList.toggle('show');
+};
+login.onsubmit=(e)=>{
+ e.preventDefault();
+ const answer=document.getElementById('password').value.trim().toLowerCase();
+ if(answer==='ojos'){
+  document.getElementById('cover').style.display='none';
+  document.getElementById('website').classList.add('show');
+  window.scrollTo(0,0);
+ }else{
+  document.getElementById('error').textContent='Esa no es la respuesta. Inténtalo otra vez.';
+ }
+};
+
+// ANIMACIÓN DE SECCIONES
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting){
+   entry.target.classList.add('visible');
+   observer.unobserve(entry.target);
+  }
+ });
+},{threshold:.08});
+document.querySelectorAll('.section').forEach(s=>observer.observe(s));
+
+// MENSAJES DE LA CANCIÓN
+const audio=document.getElementById('audio');
+const caption=document.getElementById('caption');
+const disc=document.getElementById('disc');
+const status=document.getElementById('status');
+
+const messages=[
+ [0,'Quiero que sepas que valoro mucho lo que compartimos.'],
+ [15,'Me gusta conocerte cada día un poquito más.'],
+ [30,'Hay momentos contigo que recuerdo incluso cuando no estamos juntos.'],
+ [45,'Tu forma de ser tiene detalles que me hacen sonreír.'],
+ [60,'No necesito que todo sea perfecto para disfrutar de estar contigo.'],
+ [75,'Quiero demostrarte con hechos que lo que siento es sincero.'],
+ [90,'Me ilusiona pensar en todas las experiencias que todavía nos esperan.'],
+ [105,'Gracias por dejarme conocer una parte de tu mundo.'],
+ [120,'Quiero seguir creando recuerdos contigo.'],
+ [135,'Me alegra que nuestros caminos se hayan encontrado.'],
+ [150,'Ojalá podamos mirar atrás y sonreír por todo lo que vivimos.'],
+ [165,'Valezka, hice todo esto pensando en ti.']
+];
+
+function updateMessage(){
+ let message=messages[0][1];
+ for(const item of messages){
+  if(audio.currentTime>=item[0])message=item[1];
+  else break;
+ }
+ caption.textContent=message;
+}
+audio.addEventListener('timeupdate',updateMessage);
+audio.addEventListener('play',()=>{
+ disc.classList.add('playing');
+ status.textContent='La canción está sonando...';
+ updateMessage();
+});
+audio.addEventListener('pause',()=>{
+ disc.classList.remove('playing');
+ if(!audio.ended)status.textContent='Canción en pausa.';
+});
+
+audio.addEventListener('ended',()=>{
+ disc.classList.remove('playing');
+ status.textContent='La canción terminó. Gracias por escuchar.';
+ caption.textContent='Este detalle fue preparado especialmente para ti.';
+});
+
+audio.addEventListener('error',()=>{
+ status.textContent='No se encontró musica/cancion.mp3. Revisa el nombre y la carpeta.';
+});
+
+audio.addEventListener('loadedmetadata',()=>{
+ status.textContent='Canción lista para reproducir.';
+});
+
+// LLUVIA DE CORAZONES
+document.getElementById('hearts').onclick=()=>{
+ const symbols=['♥','♡','💗','✦'];
+
+ for(let i=0;i<35;i++){
+  setTimeout(()=>{
+   const h=document.createElement('span');
+   h.className='heart';
+   h.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+   h.style.left=Math.random()*100+'vw';
+   h.style.fontSize=(17+Math.random()*23)+'px';
+   h.style.color=Math.random()>.5?'#f3a9df':'#d5b5ff';
+
+   document.body.appendChild(h);
+
+   setTimeout(()=>h.remove(),3600);
+  },i*85);
+ };
+};
+</script>
+</body>
+</html>
